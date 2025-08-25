@@ -1,0 +1,543 @@
+---
+// src/pages/services.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const pageTitle = "Our Services - Moahi Sustainable Solutions";
+const pageDescription = "Comprehensive ESG and SLP solutions tailored for African contexts and international standards. IRMA readiness, stakeholder engagement, and strategic advisory services.";
+
+// Service categories data
+const esgServices = [
+    {
+        title: "Environmental Management Systems",
+        features: [
+            "ISO 14001 Environmental Management Systems",
+            "Environmental Impact Assessment & Management",
+            "Climate Change Adaptation & Mitigation Planning",
+            "Biodiversity Conservation Strategies",
+            "Water Stewardship & Management",
+            "Waste Management & Circular Economy"
+        ],
+        link: "/contact"
+    },
+    {
+        title: "Social Responsibility Implementation",
+        features: [
+            "ISO 26000 Social Responsibility Implementation",
+            "Human Rights Due Diligence & Impact Assessment",
+            "Labor Rights & Fair Employment Practices",
+            "Consumer Protection & Product Safety",
+            "Anti-corruption & Ethics Programs",
+            "Supply Chain Social Compliance"
+        ],
+        link: "/contact"
+    },
+    {
+        title: "Health & Safety Excellence",
+        features: [
+            "ISO 45001 Occupational Health & Safety",
+            "Safety Culture Transformation",
+            "Risk Assessment & Hazard Management",
+            "Emergency Response Planning",
+            "Safety Training & Competency Development",
+            "Health & Wellness Program Design"
+        ],
+        link: "/contact"
+    }
+];
+
+const socialLicenseServices = [
+    {
+        title: "Stakeholder Engagement Excellence",
+        features: [
+            "Stakeholder Mapping & Analysis",
+            "Engagement Strategy Development",
+            "Community Consultation Process Design",
+            "Traditional Authority Engagement",
+            "Multi-stakeholder Platform Facilitation",
+            "Conflict Resolution & Mediation Services"
+        ],
+        link: "/contact"
+    },
+    {
+        title: "Community Development Programs",
+        features: [
+            "Social & Labour Plan (SLP) Design & Implementation",
+            "Municipal IDP Alignment & Integration",
+            "Local Economic Development Strategies",
+            "Enterprise Development & Support",
+            "Skills Development & Training Programs",
+            "Infrastructure Development Planning"
+        ],
+        link: "/contact"
+    },
+    {
+        title: "Social Impact Management",
+        features: [
+            "Social Impact Assessment & Management",
+            "Grievance Mechanism Development & Management",
+            "Community Monitoring & Evaluation Systems",
+            "Social Performance Dashboards",
+            "Participatory Development Approaches",
+            "Community Benefit Sharing Frameworks"
+        ],
+        link: "/contact"
+    }
+];
+
+const advisoryServices = [
+    {
+        title: "IRMA Certification & Responsible Mining",
+        features: [
+            "IRMA Certification Readiness & Implementation",
+            "Responsible Mining Practice Implementation",
+            "Critical Minerals Strategy & Responsible Sourcing",
+            "Mining Value Chain Sustainability Integration",
+            "Artisanal & Small-scale Mining Support",
+            "Mine Closure & Rehabilitation Planning"
+        ],
+        link: "/contact"
+    },
+    {
+        title: "Corporate Governance & Risk",
+        features: [
+            "King IV Corporate Governance Compliance",
+            "Board-level ESG Strategy Development",
+            "ESG Risk Assessment & Management",
+            "Regulatory Compliance & Monitoring",
+            "Ethics & Integrity Program Development",
+            "Geopolitical Risk Assessment & Mitigation"
+        ],
+        link: "/contact"
+    },
+    {
+        title: "ESG Reporting & Disclosure",
+        features: [
+            "ESG Reporting & Disclosure (GRI, SASB, TCFD)",
+            "Sustainability Performance Dashboards",
+            "Integrated Reporting Framework Development",
+            "ESG Data Management Systems",
+            "Third-party ESG Verification & Assurance",
+            "Investor Relations & ESG Communication"
+        ],
+        link: "/contact"
+    }
+];
+
+const trainingServices = [
+    {
+        title: "Executive & Leadership Development",
+        features: [
+            "ESG/SLP Executive Workshops & Training",
+            "Ubuntu Leadership Development Programs",
+            "Board-level ESG Governance Training",
+            "Sustainability Leadership Certification",
+            "Change Management for Sustainability",
+            "Cultural Competency for ESG Practitioners"
+        ],
+        link: "/contact"
+    },
+    {
+        title: "Community & Stakeholder Training",
+        features: [
+            "Community Development Facilitator Training",
+            "Youth Empowerment & Leadership Development",
+            "Stakeholder Engagement Skills Training",
+            "Conflict Resolution & Mediation Training",
+            "Participatory Development Methods",
+            "Local Government Capacity Building"
+        ],
+        link: "/contact"
+    },
+    {
+        title: "Technical Skills Development",
+        features: [
+            "Sustainability Reporting Workshop Series",
+            "Environmental Monitoring & Assessment",
+            "Social Impact Measurement & Evaluation",
+            "ESG Risk Assessment Techniques",
+            "Train-the-Trainer Certification Programs",
+            "Digital Tools for Sustainability Management"
+        ],
+        link: "/contact"
+    }
+];
+
+const industries = [
+    {
+        title: "Mining & Extractives",
+        sectors: [
+            "Platinum Group Metals",
+            "Gold & Precious Metals",
+            "Coal & Energy Minerals",
+            "Iron Ore & Steel",
+            "Diamond & Gemstones",
+            "Critical & Rare Earth Minerals"
+        ]
+    },
+    {
+        title: "Energy & Utilities",
+        sectors: [
+            "Renewable Energy (Solar, Wind, Hydro)",
+            "Oil & Gas Operations",
+            "Power Generation & Distribution",
+            "Energy Storage Solutions",
+            "Municipal Utilities"
+        ]
+    },
+    {
+        title: "Agriculture & Food Systems",
+        sectors: [
+            "Commercial Farming Operations",
+            "Agro-processing & Value Addition",
+            "Smallholder Farmer Cooperatives",
+            "Sustainable Agriculture Practices",
+            "Food Security Initiatives"
+        ]
+    },
+    {
+        title: "Manufacturing & Industry",
+        sectors: [
+            "Automotive & Components",
+            "Textiles & Apparel",
+            "Chemical & Petrochemical",
+            "Consumer Goods",
+            "Industrial Equipment"
+        ]
+    },
+    {
+        title: "Infrastructure & Construction",
+        sectors: [
+            "Transportation Infrastructure",
+            "Water & Sanitation Systems",
+            "Housing & Urban Development",
+            "Telecommunications Infrastructure",
+            "Green Building & Sustainable Design"
+        ]
+    },
+    {
+        title: "Financial Services",
+        sectors: [
+            "Banking & Financial Institutions",
+            "Insurance & Risk Management",
+            "Investment & Asset Management",
+            "Microfinance & Development Finance",
+            "ESG Investment & Sustainable Finance"
+        ]
+    }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive ESG and SLP solutions tailored for African contexts and international standards.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Our Process -->
+        <div class="section-header animate-on-scroll">
+            <h2>Our Proven Process</h2>
+            <p>Systematic approach ensuring measurable results and sustainable impact</p>
+        </div>
+        
+        <div class="process-steps">
+            <div class="process-step animate-on-scroll" data-step="1">
+                <h4>Assess & Diagnose</h4>
+                <p>Comprehensive baseline assessment of current ESG maturity, stakeholder landscape, and regulatory compliance status.</p>
+            </div>
+            <div class="process-step animate-on-scroll" data-step="2">
+                <h4>Design & Plan</h4>
+                <p>Co-create tailored solutions with stakeholders, incorporating Ubuntu principles and international best practices.</p>
+            </div>
+            <div class="process-step animate-on-scroll" data-step="3">
+                <h4>Implement & Execute</h4>
+                <p>Systematic implementation with continuous monitoring, stakeholder engagement, and adaptive management.</p>
+            </div>
+            <div class="process-step animate-on-scroll" data-step="4">
+                <h4>Monitor & Sustain</h4>
+                <p>Ongoing monitoring, impact measurement, capacity building, and continuous improvement systems.</p>
+            </div>
+        </div>
+
+        <!-- Service Categories -->
+        <div class="service-section" id="esg-compliance">
+            <div class="section-header animate-on-scroll">
+                <h2>ESG Strategy & Compliance</h2>
+                <p>Comprehensive ESG frameworks aligned with international standards and African contexts.</p>
+            </div>
+            
+            <div class="services-grid">
+                {esgServices.map((service) => (
+                    <ServiceCard 
+                        title={service.title}
+                        features={service.features}
+                        link={service.link}
+                        className="animate-on-scroll"
+                    />
+                ))}
+            </div>
+        </div>
+
+        <div class="service-section" id="social-license">
+            <div class="section-header animate-on-scroll">
+                <h2>Social License to Operate</h2>
+                <p>Building and maintaining sustainable relationships with communities and stakeholders.</p>
+            </div>
+            
+            <div class="services-grid">
+                {socialLicenseServices.map((service) => (
+                    <ServiceCard 
+                        title={service.title}
+                        features={service.features}
+                        link={service.link}
+                        className="animate-on-scroll"
+                    />
+                ))}
+            </div>
+        </div>
+
+        <div class="service-section" id="advisory">
+            <div class="section-header animate-on-scroll">
+                <h2>Strategic Advisory Services</h2>
+                <p>Expert guidance on emerging sustainability challenges and opportunities.</p>
+            </div>
+            
+            <div class="services-grid">
+                {advisoryServices.map((service) => (
+                    <ServiceCard 
+                        title={service.title}
+                        features={service.features}
+                        link={service.link}
+                        className="animate-on-scroll"
+                    />
+                ))}
+            </div>
+        </div>
+
+        <div class="service-section" id="training">
+            <div class="section-header animate-on-scroll">
+                <h2>Training & Capacity Building</h2>
+                <p>Empowering teams and communities with knowledge and skills for sustainable impact.</p>
+            </div>
+            
+            <div class="services-grid">
+                {trainingServices.map((service) => (
+                    <ServiceCard 
+                        title={service.title}
+                        features={service.features}
+                        link={service.link}
+                        className="animate-on-scroll"
+                    />
+                ))}
+            </div>
+        </div>
+
+        <!-- Industry Expertise -->
+        <div class="section-header animate-on-scroll">
+            <h2>Industry Expertise</h2>
+            <p>Deep sector knowledge across African economic landscapes</p>
+        </div>
+        
+        <div class="industry-grid">
+            {industries.map((industry) => (
+                <div class="industry-item animate-on-scroll">
+                    <h5>{industry.title}</h5>
+                    <ul>
+                        {industry.sectors.map((sector) => (
+                            <li>{sector}</li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Sustainability Journey?</h2>
+            <p>Contact our experts for a personalized consultation and roadmap to ESG excellence.</p>
+            <div class="cta-buttons">
+                <a href="/contact" class="btn btn-primary">Schedule Consultation</a>
+                <a href="/assessment" class="btn btn-secondary">Take Assessment</a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .page-hero {
+        background: linear-gradient(135deg, var(--charcoal), var(--deep-red));
+        color: white;
+        padding: 6rem 0 4rem;
+        text-align: center;
+    }
+
+    .page-hero h1 {
+        color: white;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+        font-size: 1.2rem;
+        color: rgba(255,255,255,0.9);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .process-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+
+    .process-step {
+        text-align: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+
+    .process-step:hover {
+        transform: translateY(-3px);
+    }
+
+    .process-step::before {
+        content: attr(data-step);
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--ochre);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .process-step h4 {
+        color: var(--deep-red);
+        margin: 1rem 0;
+    }
+
+    .service-section {
+        margin: 4rem 0;
+        padding: 2rem 0;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .service-section:first-child {
+        border-top: none;
+    }
+
+    .industry-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .industry-item {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        border-left: 4px solid var(--sage-green);
+        transition: transform 0.3s ease;
+    }
+
+    .industry-item:hover {
+        transform: translateY(-2px);
+    }
+
+    .industry-item h5 {
+        color: var(--deep-red);
+        margin-bottom: 0.5rem;
+    }
+
+    .industry-item ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .industry-item ul li {
+        padding: 0.2rem 0;
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+
+    .industry-item ul li:before {
+        content: "•";
+        color: var(--sage-green);
+        margin-right: 0.5rem;
+    }
+
+    .cta-section {
+        background: var(--sage-green);
+        color: white;
+        padding: 3rem 0;
+        text-align: center;
+        margin: 4rem 0;
+    }
+
+    .cta-section h2 {
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+        color: rgba(255,255,255,0.9);
+        margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+        .page-hero h1 {
+            font-size: 2rem;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+
+<script>
+    // Add smooth scroll for anchor links
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    });
+</script>

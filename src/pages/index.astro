@@ -1,11 +1,147 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import StatsGrid from '../components/StatsGrid.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Import data
+import { services } from '../data/services.js';
+import { testimonials } from '../data/testimonials.js';
+import { caseStudies } from '../data/caseStudies.js';
+import { stats } from '../data/stats.js';
+
+// Page metadata
+const pageTitle = "Moahi Sustainable Solutions - Rooted to Rise: African Heritage, African Future";
+const pageDescription = "Boutique ESG and SLP specialist in African mining, industrial, energy, agriculture, and municipal sectors. IRMA readiness, stakeholder engagement, and community impact.";
+const pageKeywords = "ESG compliance South Africa, ESG compliance Africa, SLP consulting, IRMA readiness, sustainability consulting Africa";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title={pageTitle} description={pageDescription} keywords={pageKeywords}>
+    <!-- Hero Section -->
+    <Hero />
+    
+    <!-- Mission Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Boutique ESG & SLP Specialists</h2>
+                <p>Positioning African mining, industrial, energy, agriculture, and municipal sectors for sustainable success through IRMA readiness, stakeholder engagement, and community impact.</p>
+            </div>
+            
+            <div class="services-grid">
+                {services.slice(0, 3).map((service) => (
+                    <ServiceCard 
+                        title={service.title}
+                        features={service.features}
+                        link={service.link}
+                        className="animate-on-scroll"
+                    />
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Our Impact</h2>
+                <p style="color: rgba(255,255,255,0.9);">Measurable results across African industries</p>
+            </div>
+            <StatsGrid stats={stats} className="mock-data" />
+        </div>
+    </section>
+
+    <!-- Case Studies Preview -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Success Stories</h2>
+                <p>Real impact through African-centered sustainability solutions</p>
+            </div>
+            
+            {caseStudies.slice(0, 2).map((caseStudy) => (
+                <CaseStudy 
+                    title={caseStudy.title}
+                    industry={caseStudy.industry}
+                    description={caseStudy.description}
+                    challenge={caseStudy.challenge}
+                    solution={caseStudy.solution}
+                    results={caseStudy.results}
+                    image={caseStudy.image}
+                    className="animate-on-scroll"
+                />
+            ))}
+        </div>
+    </section>
+
+    <!-- Client Testimonials -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>What Our Clients Say</h2>
+                <p>Trusted by industry leaders across Africa</p>
+            </div>
+            
+            <div class="testimonials-grid mock-data">
+                {testimonials.map((testimonial) => (
+                    <TestimonialCard 
+                        content={testimonial.content}
+                        author={testimonial.author}
+                        role={testimonial.role}
+                        company={testimonial.company}
+                        image={testimonial.image}
+                        className="animate-on-scroll"
+                    />
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 style="color: white;">Ready to Start Your Sustainability Journey?</h2>
+                <p style="color: rgba(255,255,255,0.9);">Get personalized ESG recommendations and expert guidance.</p>
+                <div class="cta-buttons">
+                    <a href="/contact" class="btn btn-primary">Book ESG Audit</a>
+                    <a href="/assessment" class="btn btn-secondary">Take Assessment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .stats-section {
+        background: linear-gradient(rgba(54, 69, 79, 0.8), rgba(178, 34, 34, 0.8)) ,url('https://picsum.photos/1920/1080?random=1');
+        color: white;
+        padding: 4rem 0;
+    }
+    
+    .cta-section {
+        background: linear-gradient(135deg, var(--sage-green), var(--deep-red));
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>

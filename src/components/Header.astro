@@ -1,0 +1,58 @@
+---
+// src/components/Header.astro
+
+// Get current path for active link highlighting
+const currentPath = Astro.url.pathname;
+
+const navigation = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/services', label: 'Services' },
+    { href: '/knowledge-hub', label: 'Knowledge Hub' },
+    { href: '/assessment', label: 'Assessment' },
+    { href: '/heritage-wall', label: 'Heritage Wall' },
+    { href: '/contact', label: 'Contact' }
+];
+---
+
+<header class="header">
+    <div class="nav-container">
+        <a href="/" class="logo">Moahi Sustainable Solutions</a>
+        <nav class="nav">
+            <ul class="nav-menu" id="navMenu">
+                {navigation.map((item) => (
+                    <li>
+                        <a 
+                            href={item.href} 
+                            class={`nav-link ${currentPath === item.href ? 'active' : ''}`}
+                        >
+                            {item.label}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        </nav>
+    </div>
+</header>
+
+<script>
+    // Mobile menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
+    });
+</script>

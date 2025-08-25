@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moahi Sustainable Solutions - Rooted to Rise: African Heritage, African Future</title>
+    <meta name="description" content="Boutique ESG and SLP specialist in African mining, industrial, energy, agriculture, and municipal sectors. IRMA readiness, stakeholder engagement, and community impact.">
+    <meta name="keywords" content="ESG compliance South Africa, ESG compliance Africa, SLP consulting, IRMA readiness, sustainability consulting Africa">
+    <link rel="stylesheet" href="shared-styles.css">
+    
+    <style>
+        /* Hero Section Specific Styles */
+        .hero {
+            background: linear-gradient(rgba(54, 69, 79, 0.8), rgba(178, 34, 34, 0.8)),
+                        url('https://picsum.photos/1920/1080?random=1');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--ochre);
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--sage-green), var(--deep-red));
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Case Studies */
+        .case-study {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .case-study-header {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .case-study h4 {
+            color: var(--deep-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study .industry {
+            color: var(--ochre);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .case-study .challenge,
+        .case-study .solution,
+        .case-study .results {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .case-study .challenge {
+            background: rgba(178, 34, 34, 0.1);
+        }
+
+        .case-study .solution {
+            background: rgba(135, 169, 107, 0.1);
+        }
+
+        .case-study .results {
+            background: rgba(204, 119, 34, 0.1);
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--ochre);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        .testimonial-author {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h5 {
+            color: var(--deep-red);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .case-study-header {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Rooted to Rise</h1>
+                <div class="hero-subtitle">African Heritage, African Future</div>
+                <p>We create long-term value through sustainability, blending African wisdom with modern ESG frameworks to foster resilient communities and ethical business practices.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Book ESG Audit</a>
+                    <a href="assessment.html" class="btn btn-secondary">Community Assessment</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Overview -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Boutique ESG & SLP Specialists</h2>
+                    <p>Positioning African mining, industrial, energy, agriculture, and municipal sectors for sustainable success through IRMA readiness, stakeholder engagement, and community impact.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>ESG & Compliance Excellence</h3>
+                        <ul>
+                            <li>ISO 14001, ISO 26000, ISO 45001 Audits</li>
+                            <li>IRMA Certification Readiness</li>
+                            <li>King IV Compliance</li>
+                            <li>Regulatory Risk Management</li>
+                            <li>ESG Reporting & Disclosure</li>
+                            <li>Board-level ESG Strategy</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Social Performance & Development</h3>
+                        <ul>
+                            <li>Stakeholder Engagement Design</li>
+                            <li>Grievance Mechanisms</li>
+                            <li>SLP Design & Implementation</li>
+                            <li>Community Impact Assessment</li>
+                            <li>Social License to Operate</li>
+                            <li>Municipal IDP Alignment</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>Strategic Advisory</h3>
+                        <ul>
+                            <li>Critical Minerals Strategy</li>
+                            <li>Responsible Mining Practices</li>
+                            <li>Climate Change Adaptation</li>
+                            <li>Youth Empowerment Programs</li>
+                            <li>Value Chain Ethics</li>
+                            <li>Geopolitical Risk Assessment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 style="color: white;">Our Impact</h2>
+                    <p style="color: rgba(255,255,255,0.9);">Measurable results across African industries</p>
+                </div>
+                <div class="stats-grid mock-data  ">
+                    <div class="stat-item">
+                        <h3>150+</h3>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>25+</h3>
+                        <p>Industries Served</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>500K+</h3>
+                        <p>Community Members Impacted</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>95%</h3>
+                        <p>Client Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Preview -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Success Stories</h2>
+                    <p>Real impact through African-centered sustainability solutions</p>
+                </div>
+                
+                <div class="case-study mock-data">
+                    <div class="case-study-header">
+                        <div>
+                            <h4>IRMA Readiness Assessment for Leading Platinum Mine</h4>
+                            <div class="industry">Mining • Platinum • Rustenburg</div>
+                            <p>Comprehensive IRMA readiness assessment and implementation roadmap for a major platinum operation, focusing on community engagement and environmental stewardship.</p>
+                        </div>
+                        <img src="https://picsum.photos/200/120?random=2" alt="Mining Operation">
+                    </div>
+                    
+                    <div class="challenge">
+                        <h5>Challenge:</h5>
+                        <p>Mine faced increasing pressure from communities and investors for transparent ESG practices. Needed IRMA certification to maintain social license to operate and access responsible investment funding.</p>
+                    </div>
+                    
+                    <div class="solution">
+                        <h5>Our Solution:</h5>
+                        <p>Conducted comprehensive gap analysis, designed stakeholder engagement framework, implemented grievance mechanisms, and created 18-month IRMA readiness roadmap with community development integration.</p>
+                    </div>
+                    
+                    <div class="results">
+                        <h5>Results:</h5>
+                        <p>Achieved 85% IRMA readiness score within 12 months, reduced community conflicts by 70%, secured $50M in responsible investment funding, and established sustainable community development programs benefiting 15,000 residents.</p>
+                    </div>
+                </div>
+
+                <div class="case-study mock-data">
+                    <div class="case-study-header">
+                        <div>
+                            <h4>Municipal SLP Integration Program</h4>
+                            <div class="industry">Municipal • Local Government • Limpopo</div>
+                            <p>Integrated municipal Integrated Development Plan (IDP) with private sector Social and Labour Plans to maximize community impact and resource efficiency.</p>
+                        </div>
+                        <img src="https://picsum.photos/200/120?random=3" alt="Community Development">
+                    </div>
+                    
+                    <div class="challenge">
+                        <h5>Challenge:</h5>
+                        <p>Fragmented development initiatives between mining companies and local municipality led to duplicated efforts, resource waste, and unmet community needs.</p>
+                    </div>
+                    
+                    <div class="solution">
+                        <h5>Our Solution:</h5>
+                        <p>Facilitated multi-stakeholder alignment process, mapped community needs, integrated SLP commitments with municipal IDP priorities, and established joint monitoring framework.</p>
+                    </div>
+                    
+                    <div class="results">
+                        <h5>Results:</h5>
+                        <p>Reduced project duplication by 60%, increased development funding efficiency by 40%, improved community satisfaction scores by 80%, and established replicable model for 5 additional municipalities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Testimonials -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What Our Clients Say</h2>
+                    <p>Trusted by industry leaders across Africa</p>
+                </div>
+                
+                <div class="testimonials-grid mock-data">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            Moahi's approach to ESG is refreshingly authentic. They understand our African context while maintaining international standards. Their Ubuntu-centered methodology transformed our stakeholder relationships.
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/50/50?random=4" alt="Client">
+                            <div class="author-info">
+                                <h5>Sarah Mthembu</h5>
+                                <p>Head of Sustainability, Anglo Mining Corp</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            The IRMA readiness program exceeded our expectations. Moahi's team provided practical solutions while building genuine community partnerships. Our social license has never been stronger.
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/50/50?random=5" alt="Client">
+                            <div class="author-info">
+                                <h5>David Chen</h5>
+                                <p>General Manager, Platinum Horizons</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            Their stakeholder engagement framework is world-class. We went from community tensions to collaborative partnerships. The ROI on our sustainability investments has tripled.
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/50/50?random=6" alt="Client">
+                            <div class="author-info">
+                                <h5>Amara Okafor</h5>
+                                <p>ESG Director, West African Energy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Load header and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                });
+                
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
+        });
+
+        // Add fade-in animation to elements as they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .case-study, .testimonial, .stat-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.btn, .service-card, .case-study, .testimonial').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

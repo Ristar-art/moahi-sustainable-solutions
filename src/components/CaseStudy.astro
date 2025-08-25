@@ -1,0 +1,214 @@
+---
+// src/components/CaseStudy.astro
+export interface Props {
+    title: string;
+    industry: string;
+    description: string;
+    challenge: string;
+    solution: string;
+    results: string;
+    image: string;
+    className?: string;
+}
+
+const { title, industry, description, challenge, solution, results, image, className = '' } = Astro.props;
+---
+
+<div class={`case-study ${className}`}>
+    <div class="case-study-header">
+        <div class="case-study-content">
+            <h4>{title}</h4>
+            <div class="industry">{industry}</div>
+            <p>{description}</p>
+        </div>
+        <div class="case-study-image">
+            <img src={image} alt={title} loading="lazy">
+        </div>
+    </div>
+    
+    <div class="case-study-sections">
+        <div class="challenge">
+            <h5>🎯 Challenge:</h5>
+            <p>{challenge}</p>
+        </div>
+        
+        <div class="solution">
+            <h5>💡 Our Solution:</h5>
+            <p>{solution}</p>
+        </div>
+        
+        <div class="results">
+            <h5>📈 Results:</h5>
+            <p>{results}</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .case-study {
+        background: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+        position: relative;
+        transition: transform 0.3s ease;
+        border-left: 4px solid var(--sage-green);
+    }
+
+    .case-study:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .case-study-header {
+        display: grid;
+        grid-template-columns: 1fr 200px;
+        gap: 2rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .case-study-content h4 {
+        color: var(--deep-red);
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+
+    .industry {
+        color: var(--ochre);
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .case-study-content p {
+        color: var(--text-light);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .case-study-image {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .case-study-image img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .case-study:hover .case-study-image img {
+        transform: scale(1.05);
+    }
+
+    .case-study-sections {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .challenge,
+    .solution,
+    .results {
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid transparent;
+    }
+
+    .challenge {
+        background: rgba(178, 34, 34, 0.1);
+        border-left-color: var(--deep-red);
+    }
+
+    .solution {
+        background: rgba(135, 169, 107, 0.1);
+        border-left-color: var(--sage-green);
+    }
+
+    .results {
+        background: rgba(204, 119, 34, 0.1);
+        border-left-color: var(--ochre);
+    }
+
+    .challenge h5,
+    .solution h5,
+    .results h5 {
+        color: var(--charcoal);
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .challenge p,
+    .solution p,
+    .results p {
+        color: var(--text-dark);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Mock data indicator */
+    .case-study::after {
+        content: "📝 MOCK DATA";
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: var(--ochre);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+        .case-study {
+            padding: 1.5rem;
+        }
+
+        .case-study-header {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .case-study-image img {
+            height: 150px;
+        }
+
+        .case-study-content h4 {
+            font-size: 1.1rem;
+        }
+
+        .challenge,
+        .solution,
+        .results {
+            padding: 0.8rem;
+        }
+
+        .challenge h5,
+        .solution h5,
+        .results h5 {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .challenge h5,
+        .solution h5,
+        .results h5 {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+    }
+</style>

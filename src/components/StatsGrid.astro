@@ -1,0 +1,190 @@
+---
+// src/components/StatsGrid.astro
+export interface Props {
+    stats: Array<{
+        number: string;
+        label: string;
+    }>;
+    className?: string;
+}
+
+const { stats, className = '' } = Astro.props;
+---
+
+<div class={`stats-grid ${className}`}>
+    {stats.map((stat, index) => (
+        <div class="stat-item animate-on-scroll" style={`animation-delay: ${index * 0.1}s`}>
+            <h3>{stat.number}</h3>
+            <p>{stat.label}</p>
+        </div>
+    ))}
+</div>
+
+<style>
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .stat-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+        padding: 1rem;
+    }
+
+    .stat-item.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .stat-item h3 {
+        font-size: 3rem;
+        color: white;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        background: linear-gradient(45deg, var(--ochre), var(--copper));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .stat-item p {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.9);
+        font-weight: 500;
+        margin: 0;
+    }
+
+    /* Mock data indicator */
+    .stats-grid::after {
+        content: "📝 MOCK DATA";
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: var(--ochre);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        z-index: 10;
+    }
+
+    /* Container for the mock data indicator */
+    .stats-grid {
+        position: relative;
+    }
+
+    @media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2.2rem;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stats-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+        }
+    }
+
+    /* Hover effects */
+    .stat-item:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+
+    .stat-item:hover h3 {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+
+    /* Animation for counting effect */
+    @keyframes countUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .stat-item.fade-in h3 {
+        animation: countUp 0.8s ease-out;
+    }
+</style>
+
+<script>
+    // Optional: Add counting animation effect
+    document.addEventListener('DOMContentLoaded', () => {
+        const statItems = document.querySelectorAll('.stat-item h3');
+        
+        const animateValue = (element: HTMLElement, start: number, end: number, duration: number) => {
+            let startTimestamp: number | null = null;
+            const step = (timestamp: number) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                
+                // Handle different number formats
+                const originalText = element.textContent || '';
+                if (originalText.includes('+')) {
+                    element.textContent = current + '+';
+                } else if (originalText.includes('%')) {
+                    element.textContent = current + '%';
+                } else if (originalText.includes('K')) {
+                    element.textContent = current + 'K+';
+                } else {
+                    element.textContent = current.toString();
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Set up intersection observer for counting animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target as HTMLElement;
+                    const text = element.textContent || '';
+                    const number = parseInt(text.replace(/[^\d]/g, ''));
+                    
+                    if (!isNaN(number) && number > 0) {
+                        element.textContent = '0';
+                        setTimeout(() => {
+                            animateValue(element, 0, number, 2000);
+                        }, 300);
+                    }
+                    observer.unobserve(element);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statItems.forEach(item => {
+            observer.observe(item);
+        });
+    });
+</script>

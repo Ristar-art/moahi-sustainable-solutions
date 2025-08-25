@@ -1,0 +1,596 @@
+---
+// src/pages/knowledge-hub.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Knowledge Hub - Moahi Sustainable Solutions";
+const pageDescription = "Resources, insights, and tools to advance your ESG and sustainability journey. Free downloads, expert insights, and training events from African sustainability experts.";
+
+// Featured Resources Data
+const featuredResources = [
+    {
+        tags: ["Free Download", "Best Practice Guide"],
+        date: "Updated January 2025",
+        title: "ESG Audit Preparation Guide for African Mining Operations",
+        description: "Comprehensive 45-page guide covering ISO 14001, IRMA, and King IV readiness assessments. Includes checklists, templates, and African case studies.",
+        meta: ["PDF Format • 2.3 MB • 45 Pages", "Downloaded 3,247 times"],
+        buttonText: "Download Guide"
+    },
+    {
+        tags: ["Free Download", "Implementation Tool"],
+        date: "Updated December 2024",
+        title: "Stakeholder Engagement Playbook: Ubuntu-Centered Approach",
+        description: "Step-by-step methodology for meaningful stakeholder engagement incorporating African cultural principles. Features 15 real case studies and engagement tools.",
+        meta: ["PDF Format • 1.8 MB • 32 Pages", "Downloaded 2,891 times"],
+        buttonText: "Download Playbook"
+    },
+    {
+        tags: ["Premium Content", "Research Report"],
+        date: "Published January 2025",
+        title: "Annual African ESG Trends Report 2025",
+        description: "In-depth analysis of ESG trends across 15 African countries, regulatory developments, investment flows, and emerging opportunities. Co-authored with Wits Centre for Sustainability.",
+        meta: ["PDF Format • 5.2 MB • 87 Pages", "Available to clients and partners"],
+        buttonText: "Request Access"
+    },
+    {
+        tags: ["Free Download", "Checklist"],
+        date: "Updated November 2024",
+        title: "King IV ESG Integration Checklist",
+        description: "Practical checklist for integrating ESG considerations into corporate governance structures. Aligned with King IV principles and African business contexts.",
+        meta: ["Excel Format • 0.8 MB • Interactive Checklist", "Downloaded 1,456 times"],
+        buttonText: "Download Checklist"
+    },
+    {
+        tags: ["Free Download", "Template Library"],
+        date: "Updated January 2025",
+        title: "SLP Template Library for African Mining",
+        description: "Complete set of Social and Labour Plan templates, including stakeholder registers, grievance logs, community development project plans, and monitoring frameworks.",
+        meta: ["Multiple Formats • 4.2 MB • 12 Templates", "Downloaded 2,134 times"],
+        buttonText: "Download Templates"
+    }
+];
+
+// Interactive Tools Data
+const tools = [
+    {
+        status: "available",
+        title: "ESG Readiness Assessment",
+        description: "25-question diagnostic tool that evaluates your organization's ESG maturity across 8 key dimensions. Receive personalized recommendations and improvement roadmap.",
+        buttonText: "Take Assessment",
+        link: "/assessment"
+    },
+    {
+        status: "available",
+        title: "IRMA Gap Analysis Calculator",
+        description: "Automated scoring system that evaluates your mining operation against IRMA requirements. Identifies priority areas and provides implementation timeline.",
+        buttonText: "Access Tool",
+        link: "/contact"
+    },
+    {
+        status: "available",
+        title: "Stakeholder Mapping Template",
+        description: "Interactive Excel tool for comprehensive stakeholder mapping, influence analysis, and engagement planning. Includes African cultural considerations.",
+        buttonText: "Download Template",
+        link: "/contact"
+    },
+    {
+        status: "available",
+        title: "Community Impact ROI Calculator",
+        description: "Financial impact modeling tool that calculates the return on investment for community development programs and social license initiatives.",
+        buttonText: "Access Calculator",
+        link: "/contact"
+    },
+    {
+        status: "coming-soon",
+        title: "ESG Dashboard Builder",
+        description: "Build custom ESG performance dashboards with African context indicators. Real-time data visualization and reporting capabilities.",
+        buttonText: "Join Waitlist",
+        link: "/contact",
+        eta: "Coming Q2 2025"
+    },
+    {
+        status: "coming-soon",
+        title: "Grievance Mechanism Designer",
+        description: "Design culturally appropriate grievance mechanisms with Ubuntu principles. Includes digital and traditional communication channels.",
+        buttonText: "Join Waitlist",
+        link: "/contact",
+        eta: "Coming Q3 2025"
+    }
+];
+
+// Blog Posts Data
+const blogPosts = [
+    {
+        image: "https://picsum.photos/400/200?random=19",
+        title: "The Critical Minerals Challenge: Balancing Global Demand with African Community Needs",
+        author: "Nhlanhla Mthembu",
+        date: "January 15, 2025",
+        readTime: "8 min read",
+        description: "As global demand for lithium, cobalt, and rare earth minerals surges, African nations face the challenge of responsible extraction while ensuring community benefits...",
+        link: "/contact"
+    },
+    {
+        image: "https://picsum.photos/400/200?random=20",
+        title: "Ubuntu in Practice: Transforming Stakeholder Engagement in African Mining",
+        author: "Dr. Amina Hassan",
+        date: "January 8, 2025",
+        readTime: "6 min read",
+        description: "Traditional African philosophies offer powerful frameworks for authentic stakeholder engagement. Here's how Ubuntu principles are revolutionizing community relations...",
+        link: "/contact"
+    },
+    {
+        image: "https://picsum.photos/400/200?random=21",
+        title: "IRMA Certification: Your Roadmap to Responsible Mining Excellence",
+        author: "Themba Ndlovu",
+        date: "December 28, 2024",
+        readTime: "10 min read",
+        description: "A comprehensive guide to achieving IRMA certification, including timeline expectations, cost considerations, and strategies for successful implementation...",
+        link: "/contact"
+    },
+    {
+        image: "https://picsum.photos/400/200?random=24",
+        title: "King IV and ESG: A Governance Revolution for African Business",
+        author: "Fatima Al-Rashid",
+        date: "December 15, 2024",
+        readTime: "7 min read",
+        description: "How King IV governance principles are transforming ESG integration across African boardrooms. Practical insights for governance practitioners...",
+        link: "/contact"
+    },
+    {
+        image: "https://picsum.photos/400/200?random=25",
+        title: "Empowering African Youth for Sustainability Leadership",
+        author: "Cheeba Academy Partnership",
+        date: "November 30, 2024",
+        readTime: "5 min read",
+        description: "Innovative approaches to youth engagement in ESG initiatives. Case studies from our partnership with Cheeba Academy...",
+        link: "/contact"
+    },
+    {
+        image: "https://picsum.photos/400/200?random=26",
+        title: "Climate Adaptation Strategies for African Agriculture",
+        author: "Guest Expert",
+        date: "November 15, 2024",
+        readTime: "9 min read",
+        description: "Building resilience in African agricultural systems through traditional knowledge and modern climate science...",
+        link: "/contact"
+    }
+];
+
+// Events Data
+const events = [
+    {
+        date: "Feb 15, 2025",
+        type: "Free Webinar",
+        tags: ["Monthly Series"],
+        title: "ESG Compliance Webinar: IRMA 2024 Updates & Implementation",
+        description: "Join our monthly deep-dive session covering the latest IRMA updates, implementation strategies, and real-world case studies from African mining operations.",
+        features: [
+            "Latest IRMA standard updates and requirements",
+            "Implementation timeline and cost considerations",
+            "Case study: Successful IRMA certification in Botswana",
+            "Q&A with certified auditors"
+        ],
+        buttonText: "Register Now (Free)",
+        link: "/contact"
+    },
+    {
+        date: "Mar 20-22, 2025",
+        type: "3-Day Workshop",
+        tags: ["Premium Training"],
+        title: "Ubuntu Leadership Intensive - Johannesburg",
+        description: "Experiential leadership development program combining African wisdom with modern sustainability leadership principles.",
+        features: [
+            "African Leadership Philosophy & Practice",
+            "Stakeholder-Centric Decision Making",
+            "Conflict Resolution & Consensus Building",
+            "Sustainable Business Model Innovation",
+            "Certificate of Completion"
+        ],
+        buttonText: "Reserve Spot (R15,000)",
+        link: "/contact"
+    },
+    {
+        date: "Apr 12, 2025",
+        type: "Online Training",
+        tags: ["Certification Program"],
+        title: "Stakeholder Engagement Masterclass",
+        description: "Comprehensive online training on stakeholder engagement best practices, featuring Ubuntu-centered methodologies and African case studies.",
+        features: [
+            "6-hour intensive online training",
+            "Interactive workshops and breakout sessions",
+            "Digital toolkit and templates included",
+            "Professional development certificate"
+        ],
+        buttonText: "Enroll Now (R3,500)",
+        link: "/contact"
+    },
+    {
+        date: "Jun 10-11, 2025",
+        type: "2-Day Conference",
+        tags: ["Flagship Event"],
+        title: "Rooted to Rise: African Sustainability Innovation Conference - Cape Town",
+        description: "Africa's premier sustainability conference bringing together 500+ leaders, practitioners, and innovators from across the continent.",
+        features: [
+            "50+ Expert Speakers from Across Africa",
+            "Interactive Panel Discussions & Workshops",
+            "Sustainability Innovation Showcase",
+            "Networking & Partnership Opportunities",
+            "Ubuntu Leadership Awards Ceremony"
+        ],
+        buttonText: "Early Bird Registration (R8,500)",
+        link: "/contact"
+    }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Knowledge Hub</h1>
+            <p>Resources, insights, and tools to advance your ESG and sustainability journey.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Featured Resources -->
+        <div class="section-header animate-on-scroll" id="resources">
+            <h2>Featured Resources</h2>
+            <p>Essential guides and tools for ESG practitioners</p>
+        </div>
+        
+        {featuredResources.map((resource) => (
+            <div class="resource-card mock-data animate-on-scroll">
+                <div class="resource-meta">
+                    {resource.tags.map((tag) => (
+                        <span class="resource-tag">{tag}</span>
+                    ))}
+                    <span>{resource.date}</span>
+                </div>
+                <h4>{resource.title}</h4>
+                <p>{resource.description}</p>
+                <div class="resource-meta">
+                    {resource.meta.map((item) => (
+                        <span>{item}</span>
+                    ))}
+                </div>
+                <a href="/contact" class="btn btn-primary">{resource.buttonText}</a>
+            </div>
+        ))}
+
+        <!-- Interactive Tools -->
+        <div class="section-header animate-on-scroll">
+            <h2>Interactive Tools</h2>
+            <p>Self-service tools to accelerate your sustainability journey</p>
+        </div>
+        
+        <div class="tools-grid">
+            {tools.map((tool) => (
+                <div class="tool-card animate-on-scroll">
+                    <span class={`tool-status ${tool.status}`}>
+                        {tool.status === 'available' ? 'Available Now' : tool.eta}
+                    </span>
+                    <h4>{tool.title}</h4>
+                    <p>{tool.description}</p>
+                    <a href={tool.link} class={`btn ${tool.status === 'available' ? 'btn-primary' : 'btn-secondary'}`}>
+                        {tool.buttonText}
+                    </a>
+                </div>
+            ))}
+        </div>
+
+        <!-- Latest Insights -->
+        <div class="section-header animate-on-scroll">
+            <h2>Latest Insights</h2>
+            <p>Thought leadership and expert perspectives on African sustainability</p>
+        </div>
+        
+        <div class="blog-grid mock-data">
+            {blogPosts.map((post) => (
+                <div class="blog-card animate-on-scroll">
+                    <img src={post.image} alt={post.title} loading="lazy">
+                    <div class="blog-card-content">
+                        <h4>{post.title}</h4>
+                        <div class="blog-meta">
+                            By {post.author} • {post.date} • {post.readTime}
+                        </div>
+                        <p>{post.description}</p>
+                        <a href={post.link} class="btn btn-secondary">Read Full Article</a>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <!-- Events & Training Section -->
+    <section class="events-section" id="events">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Upcoming Events & Training</h2>
+                <p>Learn from experts and connect with sustainability leaders</p>
+            </div>
+            
+            {events.map((event) => (
+                <div class="event-card mock-data animate-on-scroll">
+                    <div class="event-meta">
+                        <span class="event-date">{event.date}</span>
+                        <span class="event-type">{event.type}</span>
+                        {event.tags.map((tag) => (
+                            <span class="resource-tag">{tag}</span>
+                        ))}
+                    </div>
+                    <h3>{event.title}</h3>
+                    <p>{event.description}</p>
+                    <ul>
+                        {event.features.map((feature) => (
+                            <li>{feature}</li>
+                        ))}
+                    </ul>
+                    <a href={event.link} class="btn btn-primary">{event.buttonText}</a>
+                </div>
+            ))}
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .page-hero {
+        background: linear-gradient(135deg, var(--charcoal), var(--deep-red));
+        color: white;
+        padding: 6rem 0 4rem;
+        text-align: center;
+    }
+
+    .page-hero h1 {
+        color: white;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+        font-size: 1.2rem;
+        color: rgba(255,255,255,0.9);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .resource-card {
+        background: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--sage-green);
+        transition: transform 0.3s ease;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .resource-card h4 {
+        color: var(--deep-red);
+        margin-bottom: 1rem;
+    }
+
+    .resource-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: var(--text-light);
+        flex-wrap: wrap;
+    }
+
+    .resource-tag {
+        background: var(--ochre);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+    }
+
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+
+    .tool-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-left: 4px solid var(--copper);
+        transition: transform 0.3s ease;
+    }
+
+    .tool-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .tool-card h4 {
+        color: var(--deep-red);
+        margin-bottom: 1rem;
+    }
+
+    .tool-status {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .tool-status.available {
+        background: var(--sage-green);
+        color: white;
+    }
+
+    .tool-status.coming-soon {
+        background: var(--ochre);
+        color: white;
+    }
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .blog-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .blog-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .blog-card-content {
+        padding: 1.5rem;
+    }
+
+    .blog-card h4 {
+        color: var(--deep-red);
+        margin-bottom: 0.5rem;
+    }
+
+    .blog-meta {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .events-section {
+        background: var(--warm-white);
+        padding: 4rem 0;
+        margin: 4rem 0;
+    }
+
+    .event-card {
+        background: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+        border-left: 4px solid var(--sage-green);
+        transition: transform 0.3s ease;
+    }
+
+    .event-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .event-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .event-date {
+        background: var(--deep-red);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .event-type {
+        background: var(--ochre);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+    }
+
+    .event-card h3 {
+        color: var(--deep-red);
+        margin-bottom: 1rem;
+    }
+
+    .event-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .event-card li {
+        padding: 0.3rem 0;
+        color: var(--text-light);
+    }
+
+    .event-card li:before {
+        content: "✓";
+        color: var(--sage-green);
+        margin-right: 0.5rem;
+        font-weight: bold;
+    }
+
+    .mock-data {
+        position: relative;
+    }
+
+    .mock-data::before {
+        content: "📝 MOCK DATA";
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: var(--ochre);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+        .page-hero h1 {
+            font-size: 2rem;
+        }
+
+        .resource-meta {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .tools-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    // Smooth scroll for anchor links
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    });
+</script>
