@@ -1,58 +1,78 @@
 ---
-// src/components/Header.astro
-
-// Get current path for active link highlighting
 const currentPath = Astro.url.pathname;
 
 const navigation = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
-    { href: '/knowledge-hub', label: 'Knowledge Hub' },
-    { href: '/assessment', label: 'Assessment' },
-    { href: '/heritage-wall', label: 'Heritage Wall' },
-    { href: '/contact', label: 'Contact' }
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/knowledge-hub', label: 'Knowledge Hub' },
+  { href: '/assessment', label: 'Assessment' },
+  { href: '/heritage-wall', label: 'Heritage Wall' },
+  { href: '/contact', label: 'Contact' }
 ];
 ---
 
-<header class="header">
-    <div class="nav-container">
-        <a href="/" class="logo">Moahi Sustainable Solutions</a>
-        <nav class="nav">
-            <ul class="nav-menu" id="navMenu">
-                {navigation.map((item) => (
-                    <li>
-                        <a 
-                            href={item.href} 
-                            class={`nav-link ${currentPath === item.href ? 'active' : ''}`}
-                        >
-                            {item.label}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
-        </nav>
-    </div>
+<header class="fixed top-2 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-7xl bg-white shadow-md rounded-lg transition-all duration-500 ease-in-out hover:shadow-lg">
+  <div class="flex items-center justify-between px-6 py-2">
+    <img
+      src="/src/assets/MoahiLogo.png"
+      alt="Sustainable development"
+      class="h-14"
+    />
+
+    <nav class="hidden md:flex space-x-4">
+      {navigation.map((item) => (
+        <a
+          href={item.href}
+          class={`text-sm text-black font-medium hover:text-[#508742] transition-colors duration-300 ${
+            currentPath === item.href ? 'border-b-2 border-[#508742]' : ''
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <button
+      id="mobileMenuToggle"
+      class="md:hidden text-lg text-[#508742] hover:text-black transition duration-300"
+    >
+      ☰
+    </button>
+  </div>
+
+  <nav
+    id="navMenu"
+    class="md:hidden px-6 pb-4 hidden flex-col space-y-2 animate-fade-in-down"
+  >
+    {navigation.map((item) => (
+      <a
+        href={item.href}
+        class={`block text-sm text-black font-medium hover:text-[#508742] transition-colors duration-300 ${
+          currentPath === item.href ? 'border-b-2 border-[#508742]' : ''
+        }`}
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
 </header>
 
 <script>
-    // Mobile menu functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        if (mobileMenuToggle && navMenu) {
-            mobileMenuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                    navMenu.classList.remove('active');
-                }
-            });
+  document.addEventListener('DOMContentLoaded', function () {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    if (mobileMenuToggle && navMenu) {
+      mobileMenuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+          navMenu.classList.add('hidden');
         }
-    });
+      });
+    }
+  });
 </script>

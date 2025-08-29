@@ -1,5 +1,4 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
@@ -7,112 +6,390 @@ import TestimonialCard from '../components/TestimonialCard.astro';
 import CaseStudy from '../components/CaseStudy.astro';
 import StatsGrid from '../components/StatsGrid.astro';
 
-// Import data
 import { services } from '../data/services.js';
 import { testimonials } from '../data/testimonials.js';
 import { caseStudies } from '../data/caseStudies.js';
 import { stats } from '../data/stats.js';
 
-// Page metadata
 const pageTitle = "Moahi Sustainable Solutions - Rooted to Rise: African Heritage, African Future";
 const pageDescription = "Boutique ESG and SLP specialist in African mining, industrial, energy, agriculture, and municipal sectors. IRMA readiness, stakeholder engagement, and community impact.";
 const pageKeywords = "ESG compliance South Africa, ESG compliance Africa, SLP consulting, IRMA readiness, sustainability consulting Africa";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} keywords={pageKeywords}>
+  <div class="bg-white min-h-screen">
     <!-- Hero Section -->
-    <Hero />
-    
+    <div class="animate-fade-in-up">
+      <Hero />
+    </div>
+
     <!-- Mission Overview -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2>Boutique ESG & SLP Specialists</h2>
-                <p>Positioning African mining, industrial, energy, agriculture, and municipal sectors for sustainable success through IRMA readiness, stakeholder engagement, and community impact.</p>
+    <section class="max-w-7xl mx-auto mt-20 mb-20 px-6">
+      <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+        <!-- Header with pattern background -->
+        <div class="relative bg-gradient-to-r from-gray-50 to-white px-12 py-16 border-b border-gray-100">
+          <div class="absolute inset-0 opacity-5">
+            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <g fill="#508742" fill-opacity="0.1">
+                  <circle cx="30" cy="30" r="2"/>
+                  <circle cx="10" cy="10" r="1"/>
+                  <circle cx="50" cy="10" r="1"/>
+                  <circle cx="10" cy="50" r="1"/>
+                  <circle cx="50" cy="50" r="1"/>
+                </g>
+              </g>
+            </svg>
+          </div>
+          
+          <div class="relative text-center space-y-8 animate-fade-in-up delay-200">
+            <!-- Icon with distinctive styling -->
+            <div class="flex justify-center">
+              <div class="relative p-6 bg-white rounded-2xl shadow-xl border border-gray-100">
+                <div class="absolute -top-2 -right-2 w-4 h-4 bg-[#508742] rounded-full"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-[#508742]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6M8 8v10l4-4 4 4V8" />
+                </svg>
+              </div>
             </div>
             
-            <div class="services-grid">
-                {services.slice(0, 3).map((service) => (
+            <div class="space-y-4">
+              <h2 class="text-5xl font-bold text-black leading-tight">
+                Boutique ESG & SLP 
+                <span class="text-[#508742]">Specialists</span>
+              </h2>
+              <p class="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                Positioning African mining, industrial, energy, agriculture, and municipal sectors for sustainable success through IRMA readiness, stakeholder engagement, and community impact.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Services Cards with unique layouts -->
+        <div class="p-12">
+          <div class="grid md:grid-cols-3 gap-8">
+            {services.slice(0, 3).map((service, index) => (
+              <div class={`group transform transition-all duration-500 hover:-translate-y-3 animate-fade-in-up delay-${300 + index * 100}`}>
+                <!-- Card with image placeholder and diagonal accent -->
+                <div class="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 overflow-hidden">
+                  <div class="absolute top-0 right-0 w-20 h-20 bg-[#508742] transform rotate-45 translate-x-10 -translate-y-10 opacity-10"></div>
+                  
+                  <!-- Image placeholder with icon -->
+                  <div class="h-48 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-50"></div>
+                    <div class="relative z-10 p-4 bg-white rounded-full shadow-lg border border-gray-100">
+                      <svg class="w-8 h-8 text-[#508742]" fill="currentColor" viewBox="0 0 20 20">
+                        {index === 0 && <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>}
+                        {index === 1 && <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>}
+                        {index === 2 && <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z M4 5a2 2 0 012-2v6a2 2 0 01-2 2H3a2 2 0 01-2-2V5a2 2 0 012-2h1zm0 6a2 2 0 012-2h8a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2v-3z"/>}
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  <div class="p-8">
                     <ServiceCard 
-                        title={service.title}
-                        features={service.features}
-                        link={service.link}
-                        className="animate-on-scroll"
+                      title={service.title}
+                      features={service.features}
+                      link={service.link}
+                      className="bg-transparent border-none shadow-none p-0"
                     />
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 style="color: white;">Our Impact</h2>
-                <p style="color: rgba(255,255,255,0.9);">Measurable results across African industries</p>
-            </div>
-            <StatsGrid stats={stats} className="mock-data" />
-        </div>
-    </section>
-
-    <!-- Case Studies Preview -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2>Success Stories</h2>
-                <p>Real impact through African-centered sustainability solutions</p>
-            </div>
-            
-            {caseStudies.slice(0, 2).map((caseStudy) => (
-                <CaseStudy 
-                    title={caseStudy.title}
-                    industry={caseStudy.industry}
-                    description={caseStudy.description}
-                    challenge={caseStudy.challenge}
-                    solution={caseStudy.solution}
-                    results={caseStudy.results}
-                    image={caseStudy.image}
-                    className="animate-on-scroll"
-                />
-            ))}
-        </div>
-    </section>
-
-    <!-- Client Testimonials -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2>What Our Clients Say</h2>
-                <p>Trusted by industry leaders across Africa</p>
-            </div>
-            
-            <div class="testimonials-grid mock-data">
-                {testimonials.map((testimonial) => (
-                    <TestimonialCard 
-                        content={testimonial.content}
-                        author={testimonial.author}
-                        role={testimonial.role}
-                        company={testimonial.company}
-                        image={testimonial.image}
-                        className="animate-on-scroll"
-                    />
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 style="color: white;">Ready to Start Your Sustainability Journey?</h2>
-                <p style="color: rgba(255,255,255,0.9);">Get personalized ESG recommendations and expert guidance.</p>
-                <div class="cta-buttons">
-                    <a href="/contact" class="btn btn-primary">Book ESG Audit</a>
-                    <a href="/assessment" class="btn btn-secondary">Take Assessment</a>
+                  </div>
                 </div>
-            </div>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
     </section>
+
+    <!-- Stats Section with Enhanced Icons -->
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+      <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+        <div class="text-center px-12 py-16">
+          <!-- Header -->
+          <div class="space-y-8 mb-12">
+            <div class="flex justify-center">
+              <div class="relative p-6 bg-black rounded-2xl shadow-xl">
+                <div class="absolute -top-2 -left-2 w-4 h-4 bg-[#508742] rounded-full animate-pulse"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+            </div>
+            <h2 class="text-5xl font-bold text-black">
+              Our <span class="text-[#508742]">Impact</span>
+            </h2>
+            <p class="text-xl text-gray-700">Measurable results across African industries</p>
+          </div>
+
+          <!-- Enhanced Stats Grid -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div class={`group animate-fade-in-up delay-${400 + index * 100}`}>
+                <div class="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 transform transition-all duration-500 hover:-translate-y-2">
+                  <div class="absolute top-4 right-4 w-2 h-2 bg-[#508742] rounded-full"></div>
+                  
+                  <!-- Stat Icon -->
+                  <div class="flex justify-center mb-6">
+                    <div class="p-3 bg-gray-50 rounded-xl group-hover:bg-[#508742] transition-colors duration-300">
+                      {index === 0 && (
+                        <svg class="w-8 h-8 text-[#508742] group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"/>
+                          <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"/>
+                        </svg>
+                      )}
+                      {index === 1 && (
+                        <svg class="w-8 h-8 text-[#508742] group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                        </svg>
+                      )}
+                      {index === 2 && (
+                        <svg class="w-8 h-8 text-[#508742] group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                      )}
+                      {index === 3 && (
+                        <svg class="w-8 h-8 text-[#508742] group-hover:text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div class="text-center space-y-2">
+                    <div class="text-3xl font-bold text-black">{stat.value}</div>
+                    <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">{stat.label}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies with Magazine Layout -->
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+      <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+        <!-- Header -->
+        <div class="relative bg-black px-12 py-16 text-center">
+          <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"grain\" width=\"100\" height=\"100\" patternUnits=\"userSpaceOnUse\"><circle cx=\"25\" cy=\"25\" r=\"1\" fill=\"%23508742\"/><circle cx=\"75\" cy=\"75\" r=\"1\" fill=\"%23508742\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23grain)\"/></svg>'); background-size: 50px 50px;"></div>
+          </div>
+          
+          <div class="relative space-y-8">
+            <div class="flex justify-center">
+              <div class="p-6 bg-white rounded-2xl shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-[#508742]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+            <h2 class="text-5xl font-bold text-white">
+              Success <span class="text-[#508742]">Stories</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+              Real impact through African-centered sustainability solutions
+            </p>
+          </div>
+        </div>
+
+        <!-- Case Studies with Asymmetric Layout -->
+        <div class="p-12">
+          <div class="grid md:grid-cols-2 gap-12">
+            {caseStudies.slice(0, 2).map((caseStudy, index) => (
+              <div class={`group animate-fade-in-up delay-${600 + index * 200}`}>
+                <div class="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:-translate-y-4">
+                  <!-- Image with overlay -->
+                  <div class="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                      <span class="px-3 py-1 bg-[#508742] text-white text-sm font-medium rounded-full">
+                        {caseStudy.industry}
+                      </span>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                      <div class="w-3 h-3 bg-white rounded-full opacity-80"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="p-8">
+                    <CaseStudy 
+                      title={caseStudy.title}
+                      industry={caseStudy.industry}
+                      description={caseStudy.description}
+                      challenge={caseStudy.challenge}
+                      solution={caseStudy.solution}
+                      results={caseStudy.results}
+                      image={caseStudy.image}
+                      className="bg-transparent border-none shadow-none p-0"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials with Modern Card Design -->
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+      <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+        <!-- Header with geometric pattern -->
+        <div class="relative bg-gradient-to-r from-gray-50 to-white px-12 py-16 border-b border-gray-100">
+          <div class="absolute inset-0 opacity-5">
+            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <g stroke="#508742" stroke-width="1">
+                  <path d="M10 10h60v60H10z"/>
+                  <path d="M20 20h40v40H20z"/>
+                  <path d="M30 30h20v20H30z"/>
+                </g>
+              </g>
+            </svg>
+          </div>
+          
+          <div class="relative text-center space-y-8">
+            <div class="flex justify-center">
+              <div class="relative p-6 bg-[#508742] rounded-2xl shadow-xl">
+                <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-black rounded-full"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+            </div>
+            <h2 class="text-5xl font-bold text-black">
+              What Our <span class="text-[#508742]">Clients Say</span>
+            </h2>
+            <p class="text-xl text-gray-700">Trusted by industry leaders across Africa</p>
+          </div>
+        </div>
+
+        <!-- Testimonial Cards with Alternating Heights -->
+        <div class="p-12">
+          <div class="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div class={`group animate-fade-in-up delay-${800 + index * 100}`}>
+                <div class={`relative bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 ${index % 2 === 0 ? 'mt-8' : 'mb-8'}`}>
+                  <div class="absolute -top-3 -right-3 w-6 h-6 bg-[#508742] rounded-full opacity-20"></div>
+                  
+                  <!-- Quote mark -->
+                  <div class="absolute top-6 left-6">
+                    <svg class="w-8 h-8 text-[#508742] opacity-50" fill="currentColor" viewBox="0 0 32 32">
+                      <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm12 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z"/>
+                    </svg>
+                  </div>
+                  
+                  <div class="pt-16 pb-8 px-8">
+                    <TestimonialCard 
+                      content={testimonial.content}
+                      author={testimonial.author}
+                      role={testimonial.role}
+                      company={testimonial.company}
+                      image={testimonial.image}
+                      className="bg-transparent border-none shadow-none p-0"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action with Split Layout -->
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+      <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+        <div class="grid md:grid-cols-2">
+          <!-- Left side - Content -->
+          <div class="p-12 lg:p-16 flex flex-col justify-center">
+            <div class="space-y-8">
+              <h2 class="text-4xl lg:text-5xl font-bold text-black leading-tight">
+                Ready to Start Your 
+                <span class="text-[#508742]">Sustainability Journey</span>?
+              </h2>
+              <p class="text-xl text-gray-700 leading-relaxed">
+                Get personalized ESG recommendations and expert guidance tailored to African markets.
+              </p>
+              
+              <div class="space-y-4">
+                <a href="/contact" class="inline-flex items-center px-8 py-4 bg-[#508742] text-white font-semibold rounded-2xl shadow-lg transform transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:-translate-y-1">
+                  <span>Book ESG Audit</span>
+                  <svg class="ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+                <a href="/assessment" class="inline-flex items-center px-8 py-4 border-2 border-black text-black font-semibold rounded-2xl shadow-lg bg-white transform transition-all duration-300 hover:bg-black hover:text-white hover:shadow-2xl hover:scale-105 hover:-translate-y-1 ml-4">
+                  <span>Take Assessment</span>
+                  <svg class="ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right side - Visual element -->
+          <div class="relative bg-gradient-to-br from-gray-50 to-gray-100 p-12 lg:p-16 flex items-center justify-center">
+            <div class="absolute inset-0 opacity-10">
+              <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="cta-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <circle cx="10" cy="10" r="2" fill="#508742"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#cta-pattern)"/>
+              </svg>
+            </div>
+            
+            <div class="relative z-10 text-center space-y-8">
+              <div class="w-32 h-32 bg-white rounded-full shadow-2xl flex items-center justify-center mx-auto">
+                <svg class="w-16 h-16 text-[#508742]" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"/>
+                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"/>
+                </svg>
+              </div>
+              <div class="space-y-4">
+                <div class="w-16 h-1 bg-[#508742] mx-auto rounded-full"></div>
+                <p class="text-gray-600 font-medium">Start Today</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
 
+<style>
+  /* Animation keyframes */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up { 
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out forwards; 
+  }
+  
+  /* Delay classes */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-800 { animation-delay: 800ms; }
+  .delay-900 { animation-delay: 900ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+</style>
