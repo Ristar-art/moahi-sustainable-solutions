@@ -1,479 +1,259 @@
 ---
-// src/pages/assessment.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = "ESG Assessment Tool - Moahi Sustainable Solutions";
 const pageDescription = "Free comprehensive ESG and sustainability self-assessment tool. Evaluate your organization's readiness across 8 key dimensions and receive personalized recommendations.";
 
+// Benefits
 const benefits = [
-    {
-        icon: "🎯",
-        title: "Instant Results",
-        description: "Receive comprehensive results immediately with detailed scoring across all ESG dimensions and personalized improvement roadmap."
-    },
-    {
-        icon: "🌍",
-        title: "African Context",
-        description: "Assessment designed specifically for African business environments, incorporating Ubuntu principles and local regulatory frameworks."
-    },
-    {
-        icon: "📊",
-        title: "Benchmarking",
-        description: "Compare your performance against industry peers and identify competitive advantages in sustainability practices."
-    },
-    {
-        icon: "🚀",
-        title: "Action Plan",
-        description: "Receive prioritized recommendations with timeline and resource requirements for maximum impact initiatives."
-    },
-    {
-        icon: "💡",
-        title: "Expert Insights",
-        description: "Benefit from insights based on 150+ successful ESG projects across African mining, energy, and agriculture sectors."
-    },
-    {
-        icon: "🔄",
-        title: "Continuous Improvement",
-        description: "Retake annually to track progress and receive updated recommendations as your ESG maturity evolves."
-    }
+  { icon: "🎯", title: "Instant Results", description: "Receive comprehensive results immediately with detailed scoring across all ESG dimensions and personalized improvement roadmap." },
+  { icon: "🌍", title: "African Context", description: "Assessment designed specifically for African business environments, incorporating Ubuntu principles and local regulatory frameworks." },
+  { icon: "📊", title: "Benchmarking", description: "Compare your performance against industry peers and identify competitive advantages in sustainability practices." },
+  { icon: "🚀", title: "Action Plan", description: "Receive prioritized recommendations with timeline and resource requirements for maximum impact initiatives." },
+  { icon: "💡", title: "Expert Insights", description: "Benefit from insights based on 150+ successful ESG projects across African mining, energy, and agriculture sectors." },
+  { icon: "🔄", title: "Continuous Improvement", description: "Retake annually to track progress and receive updated recommendations as your ESG maturity evolves." }
 ];
 
+// Questions
 const questions = [
-    {
-        id: "organization-size",
-        label: "1. Organization Size",
-        help: "This helps us tailor recommendations to your organizational capacity and resources.",
-        options: [
-            { value: "", text: "Select Size" },
-            { value: "startup", text: "Startup (< 50 employees)" },
-            { value: "sme", text: "SME (50-250 employees)" },
-            { value: "large", text: "Large (250-1000 employees)" },
-            { value: "enterprise", text: "Enterprise (1000+ employees)" }
-        ]
-    },
-    {
-        id: "industry",
-        label: "2. Primary Industry",
-        help: "Different industries have specific ESG requirements and best practices.",
-        options: [
-            { value: "", text: "Select Industry" },
-            { value: "mining", text: "Mining & Extractives" },
-            { value: "energy", text: "Energy & Utilities" },
-            { value: "agriculture", text: "Agriculture & Food" },
-            { value: "manufacturing", text: "Manufacturing" },
-            { value: "infrastructure", text: "Infrastructure & Construction" },
-            { value: "municipal", text: "Municipal/Government" },
-            { value: "financial", text: "Financial Services" },
-            { value: "other", text: "Other" }
-        ]
-    },
-    {
-        id: "geographic-scope",
-        label: "3. Geographic Scope",
-        help: "Geographic scope affects stakeholder complexity and regulatory requirements.",
-        options: [
-            { value: "", text: "Select Scope" },
-            { value: "local", text: "Local operations only" },
-            { value: "provincial", text: "Provincial/regional" },
-            { value: "national", text: "National (single country)" },
-            { value: "african", text: "Multi-country African operations" },
-            { value: "global", text: "Global operations" }
-        ]
-    },
-    {
-        id: "esg-maturity",
-        label: "4. Current ESG Maturity Level",
-        help: "Honest self-assessment helps us provide appropriate next steps.",
-        options: [
-            { value: "", text: "Select Maturity Level" },
-            { value: "beginner", text: "Just starting ESG journey" },
-            { value: "developing", text: "Some ESG practices in place" },
-            { value: "established", text: "Well-established ESG framework" },
-            { value: "leading", text: "Industry-leading ESG practices" }
-        ]
-    },
-    {
-        id: "stakeholder-engagement",
-        label: "5. Stakeholder Engagement Maturity",
-        help: "Stakeholder engagement is critical for social license to operate in Africa.",
-        options: [
-            { value: "", text: "Select Option" },
-            { value: "none", text: "No formal processes" },
-            { value: "basic", text: "Basic consultation processes" },
-            { value: "structured", text: "Structured engagement framework" },
-            { value: "comprehensive", text: "Comprehensive stakeholder management system" }
-        ]
-    },
-    {
-        id: "community-relations",
-        label: "6. Community Relations Status",
-        help: "Community relations directly impact operational success and social license.",
-        options: [
-            { value: "", text: "Select Status" },
-            { value: "excellent", text: "Excellent - Strong community partnerships" },
-            { value: "good", text: "Good - Positive community relationships" },
-            { value: "neutral", text: "Neutral - Limited community interaction" },
-            { value: "challenging", text: "Challenging - Some community tensions" },
-            { value: "conflicted", text: "Conflicted - Significant community opposition" }
-        ]
-    },
-    {
-        id: "biggest-challenge",
-        label: "7. Your Biggest ESG Challenge",
-        help: "Identifying your primary challenge helps prioritize recommendations.",
-        options: [
-            { value: "", text: "Select Challenge" },
-            { value: "compliance", text: "Regulatory compliance & auditing" },
-            { value: "community", text: "Community relations & social license" },
-            { value: "reporting", text: "ESG reporting & disclosure" },
-            { value: "governance", text: "Board-level governance integration" },
-            { value: "implementation", text: "Strategy implementation & execution" },
-            { value: "measurement", text: "Impact measurement & ROI demonstration" },
-            { value: "capacity", text: "Internal capacity & skills gaps" },
-            { value: "funding", text: "Securing funding for ESG initiatives" }
-        ]
-    },
-    {
-        id: "timeline",
-        label: "8. Desired Implementation Timeline",
-        help: "Timeline affects the recommended approach and resource allocation.",
-        options: [
-            { value: "", text: "Select Timeline" },
-            { value: "immediate", text: "Immediate (0-3 months)" },
-            { value: "short", text: "Short-term (3-6 months)" },
-            { value: "medium", text: "Medium-term (6-12 months)" },
-            { value: "long", text: "Long-term (12+ months)" }
-        ]
-    },
-    {
-        id: "priority-focus",
-        label: "9. Priority Focus Area (Optional)",
-        help: "This helps us emphasize specific areas in your recommendations.",
-        required: false,
-        options: [
-            { value: "", text: "Select Focus Area" },
-            { value: "environmental", text: "Environmental sustainability" },
-            { value: "social", text: "Social impact & community development" },
-            { value: "governance", text: "Corporate governance & ethics" },
-            { value: "climate", text: "Climate change & adaptation" },
-            { value: "human-rights", text: "Human rights & labor practices" },
-            { value: "innovation", text: "Innovation & technology" },
-            { value: "youth", text: "Youth empowerment & development" }
-        ]
-    }
+  {
+    id: "organization-size",
+    label: "1. Organization Size",
+    help: "This helps us tailor recommendations to your organizational capacity and resources.",
+    required: true,
+    options: [
+      { value: "", text: "Select Size" },
+      { value: "startup", text: "Startup (< 50 employees)" },
+      { value: "sme", text: "SME (50-250 employees)" },
+      { value: "large", text: "Large (250-1000 employees)" },
+      { value: "enterprise", text: "Enterprise (1000+ employees)" }
+    ]
+  },
+  {
+    id: "industry",
+    label: "2. Primary Industry",
+    help: "Different industries have specific ESG requirements and best practices.",
+    required: true,
+    options: [
+      { value: "", text: "Select Industry" },
+      { value: "mining", text: "Mining & Extractives" },
+      { value: "energy", text: "Energy & Utilities" },
+      { value: "agriculture", text: "Agriculture & Food" },
+      { value: "manufacturing", text: "Manufacturing" },
+      { value: "infrastructure", text: "Infrastructure & Construction" },
+      { value: "municipal", text: "Municipal/Government" },
+      { value: "financial", text: "Financial Services" },
+      { value: "other", text: "Other" }
+    ]
+  },
+  {
+    id: "geographic-scope",
+    label: "3. Geographic Scope",
+    help: "Geographic scope affects stakeholder complexity and regulatory requirements.",
+    required: true,
+    options: [
+      { value: "", text: "Select Scope" },
+      { value: "local", text: "Local operations only" },
+      { value: "provincial", text: "Provincial/regional" },
+      { value: "national", text: "National (single country)" },
+      { value: "african", text: "Multi-country African operations" },
+      { value: "global", text: "Global operations" }
+    ]
+  },
+  {
+    id: "esg-maturity",
+    label: "4. Current ESG Maturity Level",
+    help: "Honest self-assessment helps us provide appropriate next steps.",
+    required: true,
+    options: [
+      { value: "", text: "Select Maturity Level" },
+      { value: "beginner", text: "Just starting ESG journey" },
+      { value: "developing", text: "Some ESG practices in place" },
+      { value: "established", text: "Well-established ESG framework" },
+      { value: "leading", text: "Industry-leading ESG practices" }
+    ]
+  },
+  {
+    id: "stakeholder-engagement",
+    label: "5. Stakeholder Engagement Maturity",
+    help: "Stakeholder engagement is critical for social license to operate in Africa.",
+    required: true,
+    options: [
+      { value: "", text: "Select Option" },
+      { value: "none", text: "No formal processes" },
+      { value: "basic", text: "Basic consultation processes" },
+      { value: "structured", text: "Structured engagement framework" },
+      { value: "comprehensive", text: "Comprehensive stakeholder management system" }
+    ]
+  },
+  {
+    id: "community-relations",
+    label: "6. Community Relations Status",
+    help: "Community relations directly impact operational success and social license.",
+    required: true,
+    options: [
+      { value: "", text: "Select Status" },
+      { value: "excellent", text: "Excellent - Strong community partnerships" },
+      { value: "good", text: "Good - Positive community relationships" },
+      { value: "neutral", text: "Neutral - Limited community interaction" },
+      { value: "challenging", text: "Challenging - Some community tensions" },
+      { value: "conflicted", text: "Conflicted - Significant community opposition" }
+    ]
+  },
+  {
+    id: "biggest-challenge",
+    label: "7. Your Biggest ESG Challenge",
+    help: "Identifying your primary challenge helps prioritize recommendations.",
+    required: true,
+    options: [
+      { value: "", text: "Select Challenge" },
+      { value: "compliance", text: "Regulatory compliance & auditing" },
+      { value: "community", text: "Community relations & social license" },
+      { value: "reporting", text: "ESG reporting & disclosure" },
+      { value: "governance", text: "Board-level governance integration" },
+      { value: "implementation", text: "Strategy implementation & execution" },
+      { value: "measurement", text: "Impact measurement & ROI demonstration" },
+      { value: "capacity", text: "Internal capacity & skills gaps" },
+      { value: "funding", text: "Securing funding for ESG initiatives" }
+    ]
+  },
+  {
+    id: "timeline",
+    label: "8. Desired Implementation Timeline",
+    help: "Timeline affects the recommended approach and resource allocation.",
+    required: true,
+    options: [
+      { value: "", text: "Select Timeline" },
+      { value: "immediate", text: "Immediate (0-3 months)" },
+      { value: "short", text: "Short-term (3-6 months)" },
+      { value: "medium", text: "Medium-term (6-12 months)" },
+      { value: "long", text: "Long-term (12+ months)" }
+    ]
+  },
+  {
+    id: "priority-focus",
+    label: "9. Priority Focus Area (Optional)",
+    help: "This helps us emphasize specific areas in your recommendations.",
+    required: false,
+    options: [
+      { value: "", text: "Select Focus Area" },
+      { value: "environmental", text: "Environmental sustainability" },
+      { value: "social", text: "Social impact & community development" },
+      { value: "governance", text: "Corporate governance & ethics" },
+      { value: "climate", text: "Climate change & adaptation" },
+      { value: "human-rights", text: "Human rights & labor practices" },
+      { value: "innovation", text: "Innovation & technology" },
+      { value: "youth", text: "Youth empowerment & development" }
+    ]
+  }
 ];
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-    <!-- Assessment Hero -->
-    <section class="assessment-hero">
-        <div class="assessment-container">
-            <h1>Comprehensive Sustainability Self-Assessment</h1>
-            <p>Evaluate your organization's ESG readiness across 8 key dimensions and receive personalized recommendations for improvement. This free assessment takes 10-15 minutes and provides immediate results.</p>
-        </div>
-    </section>
 
-    <!-- Benefits Section -->
-    <div class="container">
-        <div class="section-header animate-on-scroll">
-            <h2>Why Take Our Assessment?</h2>
-            <p>Get actionable insights tailored to African contexts and international standards</p>
-        </div>
-        
-        <div class="benefits-grid">
-            {benefits.map((benefit) => (
-                <div class="benefit-card animate-on-scroll">
-                    <div class="benefit-icon">{benefit.icon}</div>
-                    <h4>{benefit.title}</h4>
-                    <p>{benefit.description}</p>
-                </div>
-            ))}
-        </div>
+  <!-- Hero Section -->
+  <section class="assessment-hero bg-gradient-to-r from-green-600 to-teal-500 text-white py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Comprehensive Sustainability Self-Assessment</h1>
+      <p class="text-lg md:text-xl max-w-3xl mx-auto">Evaluate your organization's ESG readiness across 8 key dimensions and receive personalized recommendations. This free assessment takes 10-15 minutes and provides immediate results.</p>
     </div>
+  </section>
 
-    <!-- Assessment Form -->
-    <section class="assessment-container">
-        <div class="assessment-form">
-            <h3>Start Your ESG Assessment</h3>
-            <p>Answer the following questions honestly for the most accurate results. All information is confidential and used only to generate your personalized report.</p>
-            
-            <div class="progress-text">Question <span id="currentQuestion">1</span> of <span id="totalQuestions">{questions.filter(q => q.required !== false).length}</span></div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            
-            <form id="assessmentForm">
-                {questions.map((question) => (
-                    <div class="question">
-                        <label for={question.id}>{question.label}</label>
-                        <select id={question.id} name={question.id} required={question.required !== false}>
-                            {question.options.map((option) => (
-                                <option value={option.value}>{option.text}</option>
-                            ))}
-                        </select>
-                        <div class="question-help">{question.help}</div>
-                    </div>
-                ))}
-                
-                <div class="submit-section">
-                    <h4>Ready to Get Your Results?</h4>
-                    <p>Click below to generate your comprehensive ESG assessment report with personalized recommendations and next steps.</p>
-                    <button type="submit" class="btn btn-primary">Generate My Assessment Report</button>
-                </div>
-            </form>
-            
-            <div id="assessmentResults" class="results-section">
-                <div class="results-header">
-                    <h3>Your ESG Assessment Results</h3>
-                    <div class="score-circle" id="scoreCircle">0%</div>
-                    <h4 id="maturityLevel">ESG Maturity Level</h4>
-                    <p id="levelDescription">Assessment description will appear here</p>
-                </div>
-                
-                <div class="results-grid">
-                    <div class="result-card">
-                        <h4>🚀 Priority Actions</h4>
-                        <ul id="priorityActions">
-                            <li>Priority actions will be generated based on your responses</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="result-card">
-                        <h4>📚 Recommended Resources</h4>
-                        <ul id="recommendedResources">
-                            <li>Relevant resources will be suggested based on your needs</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="result-card">
-                        <h4>💡 Strategic Recommendations</h4>
-                        <ul id="strategicRecommendations">
-                            <li>Strategic recommendations will be tailored to your situation</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="result-card">
-                        <h4>⏱️ Implementation Timeline</h4>
-                        <ul id="implementationTimeline">
-                            <li>Timeline recommendations based on your desired pace</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="cta-section">
-                    <h4>🎯 Next Steps with Moahi</h4>
-                    <p id="nextStepsDescription">Based on your assessment, we recommend personalized expert consultation to develop your ESG roadmap.</p>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="/contact" class="btn btn-primary">Schedule Expert Consultation</a>
-                        <a href="/knowledge-hub" class="btn btn-secondary" style="margin-left: 1rem;">Download Resources</a>
-                    </div>
-                </div>
-            </div>
+  <!-- Benefits Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-semibold mb-2">Why Take Our Assessment?</h2>
+        <p class="text-gray-600 text-lg">Get actionable insights tailored to African contexts and international standards</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {benefits.map((benefit) => (
+          <div class="benefit-card bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300 flex flex-col items-start">
+            <div class="benefit-icon text-4xl mb-4">{benefit.icon}</div>
+            <h4 class="text-xl font-semibold mb-2">{benefit.title}</h4>
+            <p class="text-gray-700">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Assessment Form -->
+  <section class="assessment-form-section py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <h3 class="text-3xl font-semibold mb-4 text-center">Start Your ESG Assessment</h3>
+      <p class="text-gray-600 mb-8 text-center">Answer the following questions honestly for the most accurate results. All information is confidential and used only to generate your personalized report.</p>
+
+      <div class="progress-wrapper mb-8">
+        <div class="flex justify-between text-gray-700 mb-2">
+          <span>Question <span id="currentQuestion">1</span></span>
+          <span>of <span id="totalQuestions">{questions.filter(q => q.required !== false).length}</span></span>
         </div>
-    </section>
+        <div class="progress-bar h-3 bg-gray-200 rounded-full overflow-hidden">
+          <div class="progress-fill h-full bg-gradient-to-r from-green-500 to-teal-400 transition-all" id="progressFill"></div>
+        </div>
+      </div>
+
+      <form id="assessmentForm" class="space-y-6">
+        {questions.map((question) => (
+          <div class="question">
+            <label for={question.id} class="block font-medium text-gray-800 mb-1">{question.label}</label>
+            <select id={question.id} name={question.id} class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-500 focus:border-green-500" required={question.required !== false}>
+              {question.options.map((option) => (
+                <option value={option.value}>{option.text}</option>
+              ))}
+            </select>
+            <p class="text-gray-500 text-sm mt-1">{question.help}</p>
+          </div>
+        ))}
+
+        <div class="submit-section text-center mt-8">
+          <h4 class="text-2xl font-semibold mb-2">Ready to Get Your Results?</h4>
+          <p class="text-gray-600 mb-4">Click below to generate your comprehensive ESG assessment report with personalized recommendations and next steps.</p>
+          <button type="submit" class="btn btn-primary bg-gradient-to-r from-green-600 to-teal-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:shadow-lg transition duration-300">Generate My Assessment Report</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section id="assessmentResults" class="results-section py-16 bg-gray-50 hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="results-header text-center mb-12">
+        <h3 class="text-3xl font-semibold mb-4">Your ESG Assessment Results</h3>
+        <div id="scoreCircle" class="mx-auto w-40 h-40 rounded-full flex items-center justify-center text-3xl font-bold text-white mb-4 bg-gray-200"></div>
+        <h4 id="maturityLevel" class="text-2xl font-semibold mb-2">ESG Maturity Level</h4>
+        <p id="levelDescription" class="text-gray-700 max-w-2xl mx-auto">Assessment description will appear here</p>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-2 mb-12">
+        <div class="result-card bg-white rounded-xl shadow-lg p-6">
+          <h4 class="font-semibold text-xl mb-2">🚀 Priority Actions</h4>
+          <ul id="priorityActions" class="list-disc list-inside text-gray-700"></ul>
+        </div>
+        <div class="result-card bg-white rounded-xl shadow-lg p-6">
+          <h4 class="font-semibold text-xl mb-2">📚 Recommended Resources</h4>
+          <ul id="recommendedResources" class="list-disc list-inside text-gray-700"></ul>
+        </div>
+        <div class="result-card bg-white rounded-xl shadow-lg p-6">
+          <h4 class="font-semibold text-xl mb-2">💡 Strategic Recommendations</h4>
+          <ul id="strategicRecommendations" class="list-disc list-inside text-gray-700"></ul>
+        </div>
+        <div class="result-card bg-white rounded-xl shadow-lg p-6">
+          <h4 class="font-semibold text-xl mb-2">⏱️ Implementation Timeline</h4>
+          <ul id="implementationTimeline" class="list-disc list-inside text-gray-700"></ul>
+        </div>
+      </div>
+
+      <div class="cta-section text-center">
+        <h4 class="text-2xl font-semibold mb-2">🎯 Next Steps with Moahi</h4>
+        <p id="nextStepsDescription" class="text-gray-700 mb-4">Based on your assessment, we recommend personalized expert consultation to develop your ESG roadmap.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="/contact" class="btn btn-primary bg-gradient-to-r from-green-600 to-teal-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:shadow-lg transition duration-300">Schedule Expert Consultation</a>
+          <a href="/knowledge-hub" class="btn btn-secondary bg-gray-200 text-gray-800 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-300 transition duration-300">Download Resources</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
-
-
-
-<script>
-    // Progress tracking and form functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('assessmentForm');
-        const questions = form.querySelectorAll('select[required]');
-        const progressFill = document.getElementById('progressFill');
-        const currentQuestionSpan = document.getElementById('currentQuestion');
-        const totalQuestionsSpan = document.getElementById('totalQuestions');
-
-        totalQuestionsSpan.textContent = questions.length;
-
-        function updateProgress() {
-            let answeredQuestions = 0;
-            questions.forEach(question => {
-                if (question.value) answeredQuestions++;
-            });
-            
-            const progress = (answeredQuestions / questions.length) * 100;
-            progressFill.style.width = progress + '%';
-            currentQuestionSpan.textContent = Math.min(answeredQuestions + 1, questions.length);
-        }
-
-        questions.forEach(question => {
-            question.addEventListener('change', updateProgress);
-        });
-
-        // Assessment form submission
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const results = generateAssessmentResults(formData);
-            
-            displayResults(results);
-            
-            // Scroll to results
-            document.getElementById('assessmentResults').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
-
-        function generateAssessmentResults(formData) {
-            let score = 0;
-            const responses = {
-                size: formData.get('organization-size'),
-                industry: formData.get('industry'),
-                scope: formData.get('geographic-scope'),
-                maturity: formData.get('esg-maturity'),
-                stakeholder: formData.get('stakeholder-engagement'),
-                community: formData.get('community-relations'),
-                challenge: formData.get('biggest-challenge'),
-                timeline: formData.get('timeline'),
-                focus: formData.get('priority-focus')
-            };
-            
-            // Calculate score based on responses
-            if (responses.maturity === 'leading') score += 25;
-            else if (responses.maturity === 'established') score += 18;
-            else if (responses.maturity === 'developing') score += 10;
-            else if (responses.maturity === 'beginner') score += 3;
-            
-            if (responses.stakeholder === 'comprehensive') score += 20;
-            else if (responses.stakeholder === 'structured') score += 13;
-            else if (responses.stakeholder === 'basic') score += 6;
-            
-            if (responses.community === 'excellent') score += 15;
-            else if (responses.community === 'good') score += 10;
-            else if (responses.community === 'neutral') score += 5;
-            else if (responses.community === 'challenging') score += 2;
-            
-            // Scope bonus
-            if (responses.scope === 'global' || responses.scope === 'african') score += 10;
-            else if (responses.scope === 'national') score += 5;
-            
-            // Size consideration
-            if (responses.size === 'enterprise') score += 5;
-            else if (responses.size === 'large') score += 3;
-            
-            const percentage = Math.round((score / 70) * 100);
-            
-            return {
-                score: score,
-                percentage: percentage,
-                responses: responses
-            };
-        }
-
-        function displayResults(results) {
-            const { score, percentage, responses } = results;
-            
-            // Update score display
-            document.getElementById('scoreCircle').textContent = percentage + '%';
-            document.getElementById('scoreCircle').style.background = 
-                `conic-gradient(var(--ochre) ${(percentage/100)*360}deg, rgba(255,255,255,0.3) 0deg)`;
-            
-            // Determine maturity level
-            let level, description;
-            if (percentage >= 70) {
-                level = 'ESG Leader';
-                description = 'Your organization demonstrates advanced ESG practices with strong stakeholder relationships and comprehensive frameworks.';
-            } else if (percentage >= 50) {
-                level = 'ESG Advanced';
-                description = 'Strong ESG foundation with opportunities for optimization and enhanced stakeholder engagement.';
-            } else if (percentage >= 30) {
-                level = 'ESG Developing';
-                description = 'Good progress with systematic opportunities for improvement and capacity building.';
-            } else if (percentage >= 15) {
-                level = 'ESG Emerging';
-                description = 'Early stage with significant opportunities for competitive advantage through ESG implementation.';
-            } else {
-                level = 'ESG Beginner';
-                description = 'Beginning your ESG journey with substantial opportunities for foundational development.';
-            }
-            
-            document.getElementById('maturityLevel').textContent = level;
-            document.getElementById('levelDescription').textContent = description;
-            
-            // Generate specific recommendations
-            const recommendations = generateRecommendations(responses, level);
-            
-            document.getElementById('priorityActions').innerHTML = 
-                recommendations.actions.map(action => `<li>${action}</li>`).join('');
-            document.getElementById('recommendedResources').innerHTML = 
-                recommendations.resources.map(resource => `<li>${resource}</li>`).join('');
-            document.getElementById('strategicRecommendations').innerHTML = 
-                recommendations.strategies.map(strategy => `<li>${strategy}</li>`).join('');
-            document.getElementById('implementationTimeline').innerHTML = 
-                recommendations.timeline.map(item => `<li>${item}</li>`).join('');
-            
-            document.getElementById('nextStepsDescription').textContent = recommendations.nextSteps;
-            
-            // Show results
-            document.getElementById('assessmentResults').style.display = 'block';
-        }
-
-        function generateRecommendations(responses, level) {
-            const recommendations = {
-                actions: [],
-                resources: [],
-                strategies: [],
-                timeline: [],
-                nextSteps: ''
-            };
-            
-            // Industry-specific recommendations
-            if (responses.industry === 'mining') {
-                recommendations.actions.push('Conduct IRMA readiness assessment within 30 days');
-                recommendations.resources.push('Download: IRMA Certification Readiness Guide');
-                recommendations.strategies.push('Develop comprehensive stakeholder engagement framework');
-            }
-            
-            // Challenge-specific recommendations
-            if (responses.challenge === 'compliance') {
-                recommendations.actions.push('Schedule comprehensive ESG compliance audit');
-                recommendations.resources.push('Access: ESG Compliance Checklist Library');
-                recommendations.strategies.push('Implement systematic compliance monitoring dashboard');
-            } else if (responses.challenge === 'community') {
-                recommendations.actions.push('Design Ubuntu-centered stakeholder engagement strategy');
-                recommendations.resources.push('Download: Stakeholder Engagement Playbook');
-                recommendations.strategies.push('Establish community advisory panels and grievance mechanisms');
-            }
-            
-            // Timeline-based recommendations
-            if (responses.timeline === 'immediate') {
-                recommendations.timeline.push('Week 1-2: Emergency ESG strategy session');
-                recommendations.timeline.push('Week 3-4: Rapid stakeholder assessment');
-                recommendations.timeline.push('Month 2-3: Quick wins implementation');
-                recommendations.nextSteps = 'Given your immediate timeline, we recommend an urgent 2-hour consultation to address critical ESG gaps.';
-            } else {
-                recommendations.timeline.push('Month 1-2: Comprehensive ESG baseline assessment');
-                recommendations.timeline.push('Month 3-6: Framework development and pilot implementation');
-                recommendations.timeline.push('Month 6-12: Full-scale implementation and monitoring');
-                recommendations.nextSteps = 'We recommend a 3-hour strategic consultation to develop your comprehensive ESG roadmap.';
-            }
-            
-            // Community relations specific
-            if (responses.community === 'challenging' || responses.community === 'conflicted') {
-                recommendations.actions.push('Engage neutral mediator for community relations reset');
-                recommendations.strategies.push('Implement conflict resolution and trust-building initiatives');
-            }
-            
-            // Default recommendations
-            if (recommendations.actions.length < 3) {
-                recommendations.actions.push('Establish ESG governance structure with clear accountability');
-                recommendations.actions.push('Develop comprehensive stakeholder mapping and engagement plan');
-            }
-            
-            if (recommendations.resources.length < 3) {
-                recommendations.resources.push('Access: ESG Reporting Templates and Best Practices');
-                recommendations.resources.push('Register: Monthly ESG Webinar Series');
-            }
-            
-            if (recommendations.strategies.length < 3) {
-                recommendations.strategies.push('Integrate ESG considerations into business strategy and operations');
-                recommendations.strategies.push('Build internal ESG capacity through training and development');
-            }
-            
-            return recommendations;
-        }
-    });
-</script>

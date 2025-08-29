@@ -8,99 +8,102 @@ const pageDescription = "Learn about Moahi Sustainable Solutions - our story, te
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <div class="container">
-            <h1>About Moahi Sustainable Solutions</h1>
-            <p>Grounded in African heritage and Ubuntu philosophy, we bridge corporate goals with community needs.</p>
-        </div>
-    </section>
-
-    <div class="container">
-        <div class="section-header animate-on-scroll">
-            <h2>Our Story</h2>
-        </div>
-        
-        <div class="about-grid">
-            <div class="about-text animate-on-scroll">
-                <p>Founded on the principle that sustainability must be rooted in cultural wisdom, Moahi Sustainable Solutions emerged from a deep understanding that African challenges require African solutions. Our name "Moahi" means "the one who builds" in Setswana, reflecting our commitment to constructing bridges between traditional knowledge and modern business practices.</p>
-                
-                <p>We believe that true sustainability cannot be imported from elsewhere—it must grow from the soil of local understanding, community wisdom, and cultural values. This philosophy drives everything we do, from our Ubuntu-centered stakeholder engagement to our community-first approach to ESG implementation.</p>
-                
-                <h3>Our Mission</h3>
-                <p>Create long-term value through sustainability, rooted in African knowledge systems and ethical leadership principles. We empower industries and communities for ethical innovation while maintaining compliance with international standards.</p>
-            </div>
-            
-            <div class="about-visual animate-on-scroll">
-                <div class="column-image">
-                    <img src="https://picsum.photos/500/300?random=7" alt="African landscape representing our heritage">
-                </div>
-            </div>
-        </div>
-
-        <div class="ubuntu-quote animate-on-scroll">
-            <h3>"Ubuntu"</h3>
-            <p>"I am because we are. We are because I am."</p>
-            <p>This African philosophy guides our approach to sustainable development, recognizing that individual and community success are interconnected. Ubuntu teaches us that true sustainability considers the collective wellbeing of all stakeholders.</p>
-        </div>
-
-        <!-- Core Values -->
-        <div class="section-header animate-on-scroll">
-            <h2>Our Core Values</h2>
-            <p>Principles that guide every interaction and decision</p>
-        </div>
-        
-        <div class="values-grid">
-            {[
-                {
-                    title: "Ubuntu - Collective Responsibility",
-                    description: "We recognize that individual success is meaningless without community prosperity. Our solutions always consider the collective impact on all stakeholders."
-                },
-                {
-                    title: "Resilience - Sustainable Systems", 
-                    description: "We build economic and social systems that can withstand challenges while maintaining their core purpose and values over time."
-                },
-                {
-                    title: "Innovation - African Solutions",
-                    description: "We harness African creativity and traditional wisdom to develop innovative solutions for contemporary sustainability challenges."
-                },
-                {
-                    title: "Integrity - Ethical Leadership",
-                    description: "We maintain unwavering commitment to transparency, honesty, and ethical business practices in all our engagements."
-                },
-                {
-                    title: "Empowerment - Capacity Building",
-                    description: "We transfer knowledge and skills to ensure our clients and communities can sustain progress long after our engagement."
-                },
-                {
-                    title: "Excellence - International Standards",
-                    description: "We deliver world-class services that meet and exceed international ESG and sustainability standards while respecting local contexts."
-                }
-            ].map((value) => (
-                <div class="value-item animate-on-scroll">
-                    <h5>{value.title}</h5>
-                    <p>{value.description}</p>
-                </div>
-            ))}
-        </div>
-
-        <!-- Team Section -->
-        <div class="section-header animate-on-scroll">
-            <h2>Our Team</h2>
-            <p>Expert practitioners with deep African roots and global expertise</p>
-        </div>
-        
-        <div class="team-grid mock-data">
-            {team.map((member) => (
-                <div class="team-member animate-on-scroll">
-                    <img src={member.image} alt={member.name}>
-                    <h4>{member.name}</h4>
-                    <div class="role">{member.role}</div>
-                    <p>{member.bio}</p>
-                    <p><strong>Expertise:</strong> {member.expertise}</p>
-                </div>
-            ))}
-        </div>
+  <!-- Page Hero -->
+  <section class="relative bg-gradient-to-br from-green-700 via-green-600 to-green-800 text-white py-28 px-6 md:px-16 text-center rounded-3xl max-w-7xl mx-auto mt-20 shadow-lg">
+    <div class="container mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">About Moahi Sustainable Solutions</h1>
+      <p class="text-lg md:text-xl max-w-3xl mx-auto">Grounded in African heritage and Ubuntu philosophy, we bridge corporate goals with community needs.</p>
     </div>
-</BaseLayout>
+  </section>
 
+  <div class="container mx-auto px-6 md:px-12 mt-20 space-y-20">
+
+    <!-- Our Story -->
+    <div class="section-header text-center md:text-left animate-on-scroll mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Story</h2>
+    </div>
+    
+    <div class="about-grid grid md:grid-cols-2 gap-12 items-center">
+      <div class="about-text space-y-6 animate-on-scroll text-gray-700">
+        <p>Founded on the principle that sustainability must be rooted in cultural wisdom, Moahi Sustainable Solutions emerged from a deep understanding that African challenges require African solutions. Our name "Moahi" means "the one who builds" in Setswana, reflecting our commitment to constructing bridges between traditional knowledge and modern business practices.</p>
+        
+        <p>We believe that true sustainability cannot be imported from elsewhere—it must grow from the soil of local understanding, community wisdom, and cultural values. This philosophy drives everything we do, from our Ubuntu-centered stakeholder engagement to our community-first approach to ESG implementation.</p>
+        
+        <h3 class="text-2xl font-semibold text-gray-800">Our Mission</h3>
+        <p>Create long-term value through sustainability, rooted in African knowledge systems and ethical leadership principles. We empower industries and communities for ethical innovation while maintaining compliance with international standards.</p>
+      </div>
+      
+      <div class="about-visual animate-on-scroll">
+        <div class="column-image rounded-2xl overflow-hidden shadow-lg">
+          <img /src="/src/assets/Vertical Garden with Circular Frames.png" alt="African landscape representing our heritage" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+
+    <!-- Ubuntu Quote -->
+    <div class="ubuntu-quote bg-green-50 p-10 rounded-3xl text-center animate-on-scroll shadow-inner space-y-4">
+      <h3 class="text-3xl font-bold text-green-700">"Ubuntu"</h3>
+      <p class="text-xl font-semibold text-gray-800">"I am because we are. We are because I am."</p>
+      <p class="text-gray-700 max-w-2xl mx-auto">This African philosophy guides our approach to sustainable development, recognizing that individual and community success are interconnected. Ubuntu teaches us that true sustainability considers the collective wellbeing of all stakeholders.</p>
+    </div>
+
+    <!-- Core Values -->
+    <div class="section-header text-center md:text-left animate-on-scroll mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Our Core Values</h2>
+      <p class="text-gray-600">Principles that guide every interaction and decision</p>
+    </div>
+    
+    <div class="values-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll">
+      {[
+        {
+          title: "Ubuntu - Collective Responsibility",
+          description: "We recognize that individual success is meaningless without community prosperity. Our solutions always consider the collective impact on all stakeholders."
+        },
+        {
+          title: "Resilience - Sustainable Systems", 
+          description: "We build economic and social systems that can withstand challenges while maintaining their core purpose and values over time."
+        },
+        {
+          title: "Innovation - African Solutions",
+          description: "We harness African creativity and traditional wisdom to develop innovative solutions for contemporary sustainability challenges."
+        },
+        {
+          title: "Integrity - Ethical Leadership",
+          description: "We maintain unwavering commitment to transparency, honesty, and ethical business practices in all our engagements."
+        },
+        {
+          title: "Empowerment - Capacity Building",
+          description: "We transfer knowledge and skills to ensure our clients and communities can sustain progress long after our engagement."
+        },
+        {
+          title: "Excellence - International Standards",
+          description: "We deliver world-class services that meet and exceed international ESG and sustainability standards while respecting local contexts."
+        }
+      ].map((value) => (
+        <div class="value-item bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 space-y-2">
+          <h5 class="text-lg font-semibold text-green-700">{value.title}</h5>
+          <p class="text-gray-700">{value.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Team Section -->
+    <div class="section-header text-center md:text-left animate-on-scroll mt-16 mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Our Team</h2>
+      <p class="text-gray-600">Expert practitioners with deep African roots and global expertise</p>
+    </div>
+    
+    <div class="team-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll">
+      {team.map((member) => (
+        <div class="team-member bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 space-y-4 text-center">
+          <img src={member.image} alt={member.name} class="w-32 h-32 object-cover rounded-full mx-auto shadow-inner">
+          <h4 class="text-xl font-bold text-gray-800">{member.name}</h4>
+          <div class="role text-green-700 font-semibold">{member.role}</div>
+          <p class="text-gray-700">{member.bio}</p>
+          <p class="text-gray-600"><strong>Expertise:</strong> {member.expertise}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</BaseLayout>
